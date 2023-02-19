@@ -1,14 +1,20 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PaintPartController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
 	[SerializeField] private Color targetColor;
-	[SerializeField] private SpriteRenderer mySpriteRenderer;
+	private SpriteRenderer _mySpriteRenderer;
 	
 	public bool canTouchable = false;
 	private bool _isPainted;
 	private bool _isTouched;
+
+	private void Awake()
+	{
+		_mySpriteRenderer = GetComponent<SpriteRenderer>();
+	}
 
 	public void OnPointerDown(PointerEventData eventData)
 	{
@@ -23,14 +29,15 @@ public class PaintPartController : MonoBehaviour, IPointerDownHandler, IPointerU
 	{
 		if(!_isTouched)
 			return;
-
+		
+		SetPaint();
 		TouchManager.touchCount--;
 		_isTouched = false;
 	}
 
 	public void SetPaint()
 	{
-		mySpriteRenderer.color = targetColor;
+		_mySpriteRenderer.color = targetColor;
 		_isPainted = true;
 	}
 }
