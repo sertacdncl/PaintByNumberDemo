@@ -78,6 +78,7 @@ public class PaintPartController : MonoBehaviour, IPointerDownHandler, IPointerU
 		_isPainted = true;
 		_mySpriteRenderer.color = targetColor;
 		_mySpriteRenderer.material.DOFloat(0, "_Opacity", 0.5f);
+		AudioManager.Instance.PlaySoundOnce("Paint");
 		PaintManager.Instance.CheckPaintedParts();
 	}
 	
