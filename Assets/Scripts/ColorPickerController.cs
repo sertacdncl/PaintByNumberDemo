@@ -36,16 +36,16 @@ public class ColorPickerController : MonoBehaviour
 
 	public void SetSelected()
 	{
-		if(ColorPickerManager.Instance.selectedColorPickerController == this)
+		if (ColorPickerManager.Instance.selectedColorPickerController == this)
 			return;
 		if (ColorPickerManager.Instance.selectedColorPickerController != null)
 			ColorPickerManager.Instance.selectedColorPickerController.SetNotSelected();
-		
+
 		ColorPickerManager.Instance.selectedColorPickerController = this;
 		selectedImage.enabled = true;
 		PaintManager.Instance.SetPaintPart(colorIndex);
 	}
-	
+
 	public void SetNotSelected()
 	{
 		selectedImage.enabled = false;

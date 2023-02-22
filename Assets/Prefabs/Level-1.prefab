@@ -7074,6 +7074,7 @@ GameObject:
   - component: {fileID: 8854627439697759184}
   - component: {fileID: 2625326837531522119}
   - component: {fileID: 6649649165654832778}
+  - component: {fileID: 5037319513545367225}
   m_Layer: 0
   m_Name: Level-1
   m_TagString: Untagged
@@ -7209,6 +7210,19 @@ MonoBehaviour:
   - {fileID: 4745210064390745596}
   - {fileID: 8095783388315912449}
   paintPartGroups: []
+--- !u!114 &5037319513545367225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8518962166409602127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f8b68305f4cbae4b90f2a66631c6e71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  margin: 1
 --- !u!1 &8855941592277392927
 GameObject:
   m_ObjectHideFlags: 0
