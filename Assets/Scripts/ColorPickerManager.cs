@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class ColorPickerManager : Singleton<ColorPickerManager>
 {
+	#region References
+
 	[SerializeField] private GameObject colorPickerPrefab;
 	[SerializeField] private List<ColorPickerController> colorPickerControllerList;
-	
+
+	#endregion
+
+	[HideInInspector] public ColorPickerController selectedColorPickerController;
+
 	public void PrepareColors()
 	{
 		var colorList = PaintPartManager.Instance.GetColorList();
@@ -17,8 +23,11 @@ public class ColorPickerManager : Singleton<ColorPickerManager>
 		{
 			var colorPickerController = colorPickerControllerList[index];
 			colorPickerController.SetColor(colorList[index]);
-			colorPickerController.SetNumber(index+1);
+			colorPickerController.SetNumber(index + 1);
 			colorPickerController.gameObject.SetActive(true);
+			
+			if(index == 0)
+				colorPickerController.SetSelected();
 		}
 	}
 
@@ -39,6 +48,7 @@ public class ColorPickerManager : Singleton<ColorPickerManager>
 			{
 				Destroy(colorPickerControllerList[i].gameObject);
 			}
+
 			colorPickerControllerList.RemoveRange(colorList.Count, difference);
 		}
 	}
@@ -47,5 +57,15 @@ public class ColorPickerManager : Singleton<ColorPickerManager>
 	{
 		var colorPicker = Instantiate(colorPickerPrefab, colorPickerControllerList[0].transform.parent);
 		colorPickerControllerList.Add(colorPicker.GetComponent<ColorPickerController>());
+	}
+
+	public void SetSelectedColorPicker(int index)
+	{
+		colorPickerControllerList[index].SetSelected();
+	}
+	
+	public void SetCompletedPicker(int index)
+	{
+		colorPickerControllerList[index].SetCompleted(true);
 	}
 }

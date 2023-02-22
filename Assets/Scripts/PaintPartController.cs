@@ -19,9 +19,10 @@ public class PaintPartController : MonoBehaviour, IPointerDownHandler, IPointerU
 
 	#region Variables
 	
+	public bool IsPainted => _isPainted;
+	
 	private bool _isPainted;
 	private bool _isTouched;
-
 	private Texture2D _texture;
 
 	#endregion
@@ -62,6 +63,13 @@ public class PaintPartController : MonoBehaviour, IPointerDownHandler, IPointerU
 		collider.enabled = true;
 		_mySpriteRenderer.material.SetFloat("_Opacity", 1f);
 	}
+	
+	public void SetNotPaintable()
+	{
+		_isPainted = false;
+		collider.enabled = false;
+		_mySpriteRenderer.material.SetFloat("_Opacity", 0f);
+	}
 
 	private void SetPaintWithAnimation()
 	{
@@ -70,17 +78,9 @@ public class PaintPartController : MonoBehaviour, IPointerDownHandler, IPointerU
 		_isPainted = true;
 		_mySpriteRenderer.color = targetColor;
 		_mySpriteRenderer.material.DOFloat(0, "_Opacity", 0.5f);
+		PaintManager.Instance.CheckPaintedParts();
 	}
 	
-
-	private void SetPaint()
-	{
-		_mySpriteRenderer.color = targetColor;
-		_numberText.enabled = false;
-		collider.enabled = false;
-		_isPainted = true;
-	}
-
 	public void SetNumber(int number)
 	{
 		_numberText.text = number.ToString();
