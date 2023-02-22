@@ -21,8 +21,8 @@ public class PaintPartController : MonoBehaviour, IPointerDownHandler, IPointerU
 	
 	public bool IsPainted => _isPainted;
 	
-	private bool _isPainted;
-	private bool _isTouched;
+	private bool _isPainted = false;
+	private bool _isTouched = false;
 	private Texture2D _texture;
 
 	#endregion
@@ -59,15 +59,20 @@ public class PaintPartController : MonoBehaviour, IPointerDownHandler, IPointerU
 	
 	public void SetPaintable()
 	{
-		_isPainted = false;
+		if(_isPainted)
+			return;
+			
 		collider.enabled = true;
 		_mySpriteRenderer.material.SetFloat("_Opacity", 1f);
 	}
 	
 	public void SetNotPaintable()
 	{
-		_isPainted = false;
 		collider.enabled = false;
+		if (_isPainted)
+			return;
+		
+		
 		_mySpriteRenderer.material.SetFloat("_Opacity", 0f);
 	}
 
