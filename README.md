@@ -5,7 +5,7 @@ Painting Game
 
 Controls:
 • Swipe to move bottom Slider
-• Tab to paint declared areas
+• Tap to paint declared areas
 
 Technologies:
 • Unity C#
